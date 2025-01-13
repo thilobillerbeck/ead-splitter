@@ -45,7 +45,7 @@ const App = () => {
         setMeta(data);
         setLoading(false);
       });
-  });
+  }, []);
 
   useEffect(() => {
     const url = new URL(window.location.href);

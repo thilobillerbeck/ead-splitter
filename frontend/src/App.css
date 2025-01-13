@@ -1,0 +1,347 @@
+@import-normalize;
+
+body {
+  margin: 0;
+  color: #eee;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #1a1a1a;
+  font-size: 16px;
+}
+
+input,
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  background-color: #1a1a1a;
+  color: #fff;
+  border: 1px solid #8a7f7f;
+}
+
+b {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+}
+
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  overflow-x: hidden;
+}
+
+.formLayout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.formLayoutDisposal {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  gap: 1rem;
+  overflow-x: auto;
+}
+
+.formLayoutDisposalEl {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.75rem;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid #8a7f7f;
+  position: relative;
+  min-width: fit-content;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  transition: all 0.1s;
+}
+
+.formLayoutDisposalEl::before {
+  content: "";
+  color: #888;
+  width: 24px;
+  height: 24px;
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19 3H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5z'/%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.formLayoutDisposalEl::after {
+  content: "";
+  height: 0.25rem;
+  width: 100%;
+  background-color: var(--disp-color);
+  position: absolute;
+  bottom: 0;
+}
+
+input[type="checkbox"]:checked + .formLayoutDisposalEl {
+  background-color: #333;
+  border: 1px solid #aaa;
+}
+
+input[type="checkbox"]:hover + .formLayoutDisposalEl {
+  border: 1px solid white;
+  background-color: #3a3a3a;
+}
+
+input[type="checkbox"]:checked + .formLayoutDisposalEl::before {
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5zm-9 12l-4-4l1.41-1.42L10 14.17l6.59-6.59L18 9'/%3E%3C/svg%3E");
+  color: #ccc;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+.formLayoutPartiesView {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding-top: 0.75rem;
+}
+
+.formLayoutParty {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.formLayoutPartyView {
+  display: flex;
+  flex-flow: column;
+  background-color: #222;
+}
+
+.partyName {
+  font-size: 1.125rem;
+  background-color: #333;
+  padding: 0.5rem;
+  font-weight: bold;
+}
+
+.partyWeek {
+  font-size: 1rem;
+  background-color: #2a2a2a;
+  padding: 0.5rem;
+}
+
+button,
+.btn {
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+  background-color: #371972;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.1s;
+}
+
+.btn-delete {
+  background-color: #7a0029;
+}
+.btn-delete:hover {
+  background-color: #a3003c;
+}
+
+.btn-add {
+  background-color: #307700;
+}
+.btn-add:hover {
+  background-color: #3a8c00;
+}
+
+button:hover,
+.btn:hover {
+  background-color: #5326ad;
+}
+
+.formLayoutParty > input[type="text"] {
+  flex: 1;
+}
+
+.more a {
+  color: #fff;
+}
+
+.more a:hover {
+  color: #ccc;
+}
+
+.more a:visited {
+  color: #eee;
+}
+
+.more {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #8a7f7f;
+  padding-top: 1rem;
+  cursor: pointer;
+}
+
+.headline {
+  background-color: #371972;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #eee;
+}
+
+.subheadline {
+  background-color: #5326ad;
+  padding: 0.5rem 0;
+  font-weight: bold;
+  font-size: 1.35rem;
+  color: #eee;
+}
+
+.headlineSection {
+  padding: 0.5rem 0 0.2rem 0;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+/* LOADER */
+.lds-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lds-dual-ring {
+  /* change color here */
+  color: #eee;
+}
+.lds-dual-ring,
+.lds-dual-ring:after {
+  box-sizing: border-box;
+}
+.lds-dual-ring {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6.4px solid currentColor;
+  border-color: currentColor transparent currentColor transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 980px) {
+  .container {
+    max-width: 100vw;
+  }
+}
+
+@media (max-width: 786px) {
+  .formLayoutPartiesView {
+    grid-template-columns: 1fr;
+  }
+  .formLayoutParty {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+.formLayoutParties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+}
+
+.buttonRow {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #eee;
+    color: #333;
+  }
+  .formLayoutPartyView {
+    background-color: #ddd;
+  }
+
+  input[type="checkbox"]:checked + .formLayoutDisposalEl {
+    background-color: #ddd;
+    border: 1px solid #000;
+    color: #000;
+  }
+
+  input[type="checkbox"]:checked + .formLayoutDisposalEl::before {
+    color: #000;
+  }
+
+  input,
+  select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #1a1a1a;
+    border: 1px solid #8a7f7f;
+  }
+
+  .partyName {
+    font-size: 1.125rem;
+    background-color: #ddd;
+    padding: 0.5rem;
+    font-weight: bold;
+  }
+
+  .partyWeek {
+    font-size: 1rem;
+    background-color: #eaeaea;
+    padding: 0.5rem;
+  }
+
+  a {
+    color: #000;
+  }
+}

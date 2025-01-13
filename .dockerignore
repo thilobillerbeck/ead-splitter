@@ -1,0 +1,16 @@
+node_modules
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+app/frontend/
+
+# Virtual environments
+.venv
+
+# Custom 
+*.ics

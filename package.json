@@ -1,0 +1,25 @@
+{
+  "name": "ead-splitter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "frontend": "cd frontend && pnpm run dev",
+    "backend": "cd backend && uv run fastapi dev",
+    "dev": "concurrently -c red,blue --names FRONTEND,BACKEND \"pnpm run frontend\" \"pnpm run backend\"",
+    "build:frontend": "cd frontend && pnpm run build && mkdir -p ../backend/app/frontend && cp -r dist/* ../backend/app/frontend",
+    "build:backend": "cd backend && uv build",
+    "setup": "pnpm run setup:frontend && pnpm run setup:backend && pnpm run build:frontend",
+    "setup:frontend": "cd frontend && pnpm install",
+    "setup:backend": "cd backend && uv sync",
+    "format": "pnpm run format:frontend && pnpm run format:backend",
+    "format:frontend": "cd frontend && pnpm run format",
+    "format:backend": "cd backend && uv run ruff format"
+  }
+}

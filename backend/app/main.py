@@ -48,6 +48,11 @@ async def root():
     return FileResponse("app/frontend/index.html")
 
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
+
+
 @app.get("/api/meta")
 async def meta(request: Request, response_class=JSONResponse):
     return {

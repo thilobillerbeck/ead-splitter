@@ -72,13 +72,13 @@ const App = () => {
         </div>
       ) : (
         <>
-          <div className="formLayout">
             <div className="subheadline">
               <div className="container">
                 {edit ? (
                   <select
                     onChange={(e) => setStreet(e.currentTarget.value)}
                     value={street}
+                    className="streetSelect"
                   >
                     {meta.streets.map((street) => (
                       <option key={street}>{street}</option>
@@ -194,31 +194,33 @@ const App = () => {
                 </span>
               )}
             </div>
-          </div>
-          <footer class="more container">
-            <span>
-              Made with ❤️ by{' '}
-              <a href="https://thilo-billerbeck.com ">Thilo Billerbeck</a> -{' '}
-              <a
-                href="https://thilo-billerbeck.com/impressum/"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Impressum
-              </a>{' '}
-              -{' '}
-              <a
-                href="https://github.com/thilobillerbeck/ead-splitter"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Source Code
-              </a>
-            </span>
-            <button onClick={() => setEdit(!edit)} type="button">
-              {edit ? 'zur Leseansicht' : 'bearbeiten'}
-            </button>
-          </footer>
+          
+          <footer className="container">
+            <div className="footer">
+                <span>
+                  Made with ❤️ by{' '}
+                  <a href="https://thilo-billerbeck.com ">Thilo Billerbeck</a> -{' '}
+                  <a
+                    href="https://thilo-billerbeck.com/impressum/"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Impressum
+                  </a>{' '}
+                  -{' '}
+                  <a
+                    href="https://github.com/thilobillerbeck/ead-splitter"
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    Source Code
+                  </a>
+                </span>
+                <button onClick={() => setEdit(!edit)} type="button">
+                  {edit ? 'zur Leseansicht' : 'bearbeiten'}
+                </button>
+                </div>
+              </footer>
         </>
       )}
     </>

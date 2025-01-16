@@ -183,26 +183,26 @@ button:hover,
   flex: 1;
 }
 
-.more a {
+.footer a {
   color: #fff;
 }
 
-.more a:hover {
+.footer a:hover {
   color: #ccc;
 }
 
-.more a:visited {
+.footer a:visited {
   color: #eee;
 }
 
-.more {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   margin-top: 1rem;
   border-top: 1px solid #8a7f7f;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .headline {
@@ -216,6 +216,7 @@ button:hover,
 .subheadline {
   background-color: #5326ad;
   padding: 0.5rem 0;
+  margin-bottom: 0.5rem;
   font-weight: bold;
   font-size: 1.35rem;
   color: #eee;
@@ -297,6 +298,10 @@ button:hover,
   flex-direction: row;
   justify-content: end;
   gap: 1rem;
+}
+ 
+select {
+  max-width: 100%;
 }
 
 @media (prefers-color-scheme: light) {

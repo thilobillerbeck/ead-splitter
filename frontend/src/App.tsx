@@ -195,7 +195,7 @@ const App = () => {
               )}
             </div>
           </div>
-          <div class="more container">
+          <footer class="more container">
             <span>
               Made with ❤️ by{' '}
               <a href="https://thilo-billerbeck.com ">Thilo Billerbeck</a> -{' '}
@@ -218,7 +218,7 @@ const App = () => {
             <button onClick={() => setEdit(!edit)} type="button">
               {edit ? 'zur Leseansicht' : 'bearbeiten'}
             </button>
-          </div>
+          </footer>
         </>
       )}
     </>

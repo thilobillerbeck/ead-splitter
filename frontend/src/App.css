@@ -151,7 +151,7 @@ button,
   background-color: #371972;
   color: #fff;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
   text-decoration: none;
   display: flex;
   justify-content: start;
@@ -202,8 +202,7 @@ button:hover,
   gap: 0.5rem;
   margin-top: 1rem;
   border-top: 1px solid #8a7f7f;
-  padding-top: 1rem;
-  cursor: pointer;
+  padding: 1rem;
 }
 
 .headline {

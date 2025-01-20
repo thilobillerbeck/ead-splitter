@@ -19,7 +19,7 @@ disposal_types = [
         "short": "BIO",
     },
     {
-        "name": "Wertsto[ffe",
+        "name": "Wertstoffe",
         "color": "#f4e834",
         "short": "WET",
     },

@@ -1,4 +1,4 @@
-FROM node:22 AS frontend
+FROM node:24 AS frontend
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable

@@ -72,155 +72,155 @@ const App = () => {
         </div>
       ) : (
         <>
-            <div className="subheadline">
-              <div className="container">
-                {edit ? (
-                  <select
-                    onChange={(e) => setStreet(e.currentTarget.value)}
-                    value={street}
-                    className="streetSelect"
-                  >
-                    {meta.streets.map((street) => (
-                      <option key={street}>{street}</option>
-                    ))}
-                  </select>
-                ) : (
-                  <span>{street}</span>
-                )}
-              </div>
-            </div>
+          <div className="subheadline">
             <div className="container">
-              <h2 class="headlineSection">Abfallarten im Kalender</h2>
-              <div className="formLayoutDisposal">
-                {meta.disposal_types.map((disposal_type, idx) => (
-                  <>
-                    <input
-                      type="checkbox"
-                      onChange={(e) => {
-                        const checked = e.currentTarget.checked;
-                        const newDisposalTypes = checked
-                          ? [...disposalTypes, disposal_type.short]
-                          : disposalTypes.filter(
-                              (dt) => dt !== disposal_type.short,
-                            );
-                        setDisposalTypes(newDisposalTypes);
-                      }}
-                      key={disposal_type.short}
-                      id={disposal_type.short}
-                      name={disposal_type.short}
-                      checked={disposalTypes.includes(disposal_type.short)}
-                      value={disposal_type.short}
-                    />
-                    <label
-                      className="formLayoutDisposalEl"
-                      key={disposal_type.short}
-                      htmlFor={disposal_type.short}
-                      style={`--disp-color: ${disposal_type.color};`}
-                    >
-                      {disposal_type.name}
-                    </label>
-                  </>
-                ))}
-              </div>
-              <h2 class="headlineSection">Parteien</h2>
-              <div
-                className={edit ? 'formLayoutParties' : 'formLayoutPartiesView'}
-              >
-                {parties.map((party, idx) => (
-                  <div
-                    className={edit ? 'formLayoutParty' : 'formLayoutPartyView'}
-                    key={party}
-                  >
-                    {edit && <span>Partei {idx + 1}</span>}
-                    {edit ? (
-                      <input
-                        type="text"
-                        value={party}
-                        onChange={(e) =>
-                          changePartyName(idx, e.currentTarget.value)
-                        }
-                      />
-                    ) : (
-                      <span className="partyName">{party}</span>
-                    )}
-                    <span className="partyWeek">
-                      KW{' '}
-                      {[idx, idx, idx].map(
-                        (idx, idx1) => `${idx + 1 + idx1 * parties.length}, `,
-                      )}
-                      ...
-                    </span>
-                    <a
-                      className="btn btn--download"
-                      href={`/api/download?street=${encodeURIComponent(
-                        street,
-                      )}&disposal_types=${encodeURIComponent(
-                        disposalTypes.join(','),
-                      )}&weekModulo=${idx + 1}&parties=${parties.length}`}
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width={24}
-                        height={24}
-                        viewBox="0 0 24 24"
-                      >
-                        <title>Download Icon</title>
-                        <path
-                          fill="currentColor"
-                          d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"
-                        />
-                      </svg>{' '}
-                      Download .ics
-                    </a>
-                  </div>
-                ))}
-              </div>
-              {edit && (
-                <span className="buttonRow">
-                  <button
-                    type="button"
-                    className="btn-add"
-                    onClick={() => setParties([...parties, ''])}
-                  >
-                    Hinzufügen
-                  </button>
-                  <button
-                    type="button"
-                    className="btn-delete"
-                    onClick={() => setParties([])}
-                  >
-                    Liste leeren
-                  </button>
-                </span>
+              {edit ? (
+                <select
+                  onChange={(e) => setStreet(e.currentTarget.value)}
+                  value={street}
+                  className="streetSelect"
+                >
+                  {meta.streets.map((street) => (
+                    <option key={street}>{street}</option>
+                  ))}
+                </select>
+              ) : (
+                <span>{street}</span>
               )}
             </div>
-          
+          </div>
+          <div className="container">
+            <h2 class="headlineSection">Abfallarten im Kalender</h2>
+            <div className="formLayoutDisposal">
+              {meta.disposal_types.map((disposal_type, idx) => (
+                <>
+                  <input
+                    type="checkbox"
+                    onChange={(e) => {
+                      const checked = e.currentTarget.checked;
+                      const newDisposalTypes = checked
+                        ? [...disposalTypes, disposal_type.short]
+                        : disposalTypes.filter(
+                            (dt) => dt !== disposal_type.short,
+                          );
+                      setDisposalTypes(newDisposalTypes);
+                    }}
+                    key={disposal_type.short}
+                    id={disposal_type.short}
+                    name={disposal_type.short}
+                    checked={disposalTypes.includes(disposal_type.short)}
+                    value={disposal_type.short}
+                  />
+                  <label
+                    className="formLayoutDisposalEl"
+                    key={disposal_type.short}
+                    htmlFor={disposal_type.short}
+                    style={`--disp-color: ${disposal_type.color};`}
+                  >
+                    {disposal_type.name}
+                  </label>
+                </>
+              ))}
+            </div>
+            <h2 class="headlineSection">Parteien</h2>
+            <div
+              className={edit ? 'formLayoutParties' : 'formLayoutPartiesView'}
+            >
+              {parties.map((party, idx) => (
+                <div
+                  className={edit ? 'formLayoutParty' : 'formLayoutPartyView'}
+                  key={party}
+                >
+                  {edit && <span>Partei {idx + 1}</span>}
+                  {edit ? (
+                    <input
+                      type="text"
+                      value={party}
+                      onChange={(e) =>
+                        changePartyName(idx, e.currentTarget.value)
+                      }
+                    />
+                  ) : (
+                    <span className="partyName">{party}</span>
+                  )}
+                  <span className="partyWeek">
+                    KW{' '}
+                    {[idx, idx, idx].map(
+                      (idx, idx1) => `${idx + 1 + idx1 * parties.length}, `,
+                    )}
+                    ...
+                  </span>
+                  <a
+                    className="btn btn--download"
+                    href={`/api/download?street=${encodeURIComponent(
+                      street,
+                    )}&disposal_types=${encodeURIComponent(
+                      disposalTypes.join(','),
+                    )}&weekModulo=${idx + 1}&parties=${parties.length}`}
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                    >
+                      <title>Download Icon</title>
+                      <path
+                        fill="currentColor"
+                        d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"
+                      />
+                    </svg>{' '}
+                    Download .ics
+                  </a>
+                </div>
+              ))}
+            </div>
+            {edit && (
+              <span className="buttonRow">
+                <button
+                  type="button"
+                  className="btn-add"
+                  onClick={() => setParties([...parties, ''])}
+                >
+                  Hinzufügen
+                </button>
+                <button
+                  type="button"
+                  className="btn-delete"
+                  onClick={() => setParties([])}
+                >
+                  Liste leeren
+                </button>
+              </span>
+            )}
+          </div>
+
           <footer className="container">
             <div className="footer">
-                <span>
-                  Made with ❤️ by{' '}
-                  <a href="https://thilo-billerbeck.com ">Thilo Billerbeck</a> -{' '}
-                  <a
-                    href="https://thilo-billerbeck.com/impressum/"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Impressum
-                  </a>{' '}
-                  -{' '}
-                  <a
-                    href="https://github.com/thilobillerbeck/ead-splitter"
-                    rel="noopener noreferrer"
-                    target="_blank"
-                  >
-                    Source Code
-                  </a>
-                </span>
-                <button onClick={() => setEdit(!edit)} type="button">
-                  {edit ? 'zur Leseansicht' : 'bearbeiten'}
-                </button>
-                </div>
-              </footer>
+              <span>
+                Made with ❤️ by{' '}
+                <a href="https://thilo-billerbeck.com ">Thilo Billerbeck</a> -{' '}
+                <a
+                  href="https://thilo-billerbeck.com/impressum/"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Impressum
+                </a>{' '}
+                -{' '}
+                <a
+                  href="https://github.com/thilobillerbeck/ead-splitter"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Source Code
+                </a>
+              </span>
+              <button onClick={() => setEdit(!edit)} type="button">
+                {edit ? 'zur Leseansicht' : 'bearbeiten'}
+              </button>
+            </div>
+          </footer>
         </>
       )}
     </>

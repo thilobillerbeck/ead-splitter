@@ -299,7 +299,7 @@ button:hover,
   justify-content: end;
   gap: 1rem;
 }
- 
+
 select {
   max-width: 100%;
 }

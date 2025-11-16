@@ -13,7 +13,7 @@
     "preact": "^10.25.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.3",
+    "@biomejs/biome": "^2.0.0",
     "@rsbuild/core": "^1.1.8",
     "@rsbuild/plugin-preact": "^1.2.0",
     "the-new-css-reset": "^1.11.3",

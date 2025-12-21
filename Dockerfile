@@ -4,10 +4,10 @@ ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
 WORKDIR /app
 COPY frontend /app
-RUN pnpm install
+RUN pnpm install --frozen-lockfile
 RUN pnpm run build
 
-FROM ghcr.io/astral-sh/uv:python3.13-alpine
+FROM ghcr.io/astral-sh/uv:python3.14-alpine
 WORKDIR /app
 ADD backend /app
 COPY --from=frontend /app/dist /app/app/frontend

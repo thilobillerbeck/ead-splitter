@@ -1,9 +1,10 @@
+import json
+
+from fastapi import FastAPI, Request
+from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
+from fastapi.staticfiles import StaticFiles
 from ics import Calendar
 from requests import get
-from fastapi import FastAPI, Request
-from fastapi.responses import PlainTextResponse, JSONResponse, FileResponse
-from fastapi.staticfiles import StaticFiles
-import json
 
 app = FastAPI()
 
@@ -62,6 +63,7 @@ async def meta(request: Request, response_class=JSONResponse):
             ).text
         ),
         "disposal_types": disposal_types,
+        "years": [str(year) for year in range(2025, 2027)]
     }
 
 
@@ -71,9 +73,10 @@ async def download(
     chosenTypes: str = "PPK,BIO,WET,RM1,RM2,RM4",
     weekModulo: int = 9,
     parties: int = 12,
+    year: int = 2025
 ):
     print(
-        f"street: {street}, chosenTypes: {chosenTypes}, weekModulo: {weekModulo}, parties: {parties}"
+        f"street: {street}, chosenTypes: {chosenTypes}, weekModulo: {weekModulo}, parties: {parties}, year: {year}"
     )
 
     def get_week_number(date):
@@ -81,7 +84,7 @@ async def download(
 
     chosenTypesQuery = "&".join([f"chosenTypes[]={t}" for t in chosenTypes.split(",")])
 
-    url = f"https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/downloadIcs/?type=742394&street={street}&{chosenTypesQuery}"
+    url = f"https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/downloadIcs/?type=742394&street={street}&{chosenTypesQuery}&year={year}"
 
     c = Calendar(get(url).text)
 

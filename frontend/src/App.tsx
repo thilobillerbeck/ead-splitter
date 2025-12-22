@@ -11,6 +11,8 @@ const App = () => {
   const [disposalTypes, setDisposalTypes] = useState([]);
   const [parties, setParties] = useState([]);
 
+  const [year, setYear] = useState(2025);
+
   function decodeFromUrl() {
     const url = new URL(window.location.href);
     const data = url.searchParams.get('data');
@@ -23,6 +25,7 @@ const App = () => {
       setStreet(parsed.street);
       setDisposalTypes(parsed.disposal_types);
       setParties(parsed.parties);
+      setYear(parsed.year || (parsed.parties ? 2025 : new Date().getFullYear));
     }
 
     if (edit) {
@@ -30,10 +33,44 @@ const App = () => {
     }
   }
 
+  function getISOWeek(date: Date) {
+    const tempDate = new Date(date.getTime());
+    tempDate.setDate(tempDate.getDate() + 4 - (tempDate.getDay() || 7));
+    const yearStart = new Date(tempDate.getFullYear(), 0, 1);
+    return Math.ceil((((tempDate - yearStart) / 86400000) + 1) / 7);
+  }
+
+  function getWeeksInYear(year: number) {
+    const d = new Date(year, 11, 31);
+    const week = getISOWeek(d);
+    return week === 1 ? getISOWeek(new Date(year, 11, 24)) : week;
+  }
+
   function changePartyName(idx, name) {
     const newParties = [...parties];
     newParties[idx] = name;
     setParties(newParties);
+  }
+
+  function reorderParties(newYear: number) {
+    if (newYear === year) return;
+    let currentYear = year;
+    let currentParties = [...parties];
+    if (newYear < year) {
+      while (currentYear > newYear) {
+        const firstPartyInLastYear = getWeeksInYear(currentYear - 1) % currentParties.length;
+        currentParties = [...currentParties.slice(currentParties.length - firstPartyInLastYear), ...currentParties.slice(0, currentParties.length - firstPartyInLastYear)];
+        currentYear--;
+      }
+    } else {
+      while (currentYear < newYear) {
+        const lastParty = getWeeksInYear(currentYear) % currentParties.length;
+        currentParties = [...currentParties.slice(lastParty), ...currentParties.slice(0, lastParty)];
+        currentYear++;
+      }
+    }
+    setParties(currentParties);
+    setYear(newYear);
   }
 
   useEffect(() => {
@@ -54,6 +91,7 @@ const App = () => {
       street: street,
       disposal_types: disposalTypes,
       parties: parties,
+      year: year,
     };
 
     url.searchParams.set('data', btoa(JSON.stringify(data)));
@@ -74,19 +112,41 @@ const App = () => {
         <>
           <div className="subheadline">
             <div className="container">
-              {edit ? (
-                <select
-                  onChange={(e) => setStreet(e.currentTarget.value)}
-                  value={street}
-                  className="streetSelect"
-                >
-                  {meta.streets.map((street) => (
-                    <option key={street}>{street}</option>
-                  ))}
-                </select>
-              ) : (
-                <span>{street}</span>
-              )}
+              <div className="sub-flex">
+                {edit ? (
+                  <>
+                    <label htmlFor="streetSelect">
+                      <span>
+                        Straße
+                      </span>
+                      <select
+                        onChange={(e) => setStreet(e.currentTarget.value)}
+                        value={street}
+                        className="streetSelect"
+                      >
+                        {meta.streets.map((street) => (
+                          <option key={street}>{street}</option>
+                        ))}
+                      </select>
+                    </label>
+                    <label htmlFor="yearSelect">
+                      <span>Jahr</span>
+                      <select onChange={(e) => reorderParties(e.currentTarget.value)} value={year} className="yearSelect">
+                        {meta.years.map((year) => (
+                          <option key={year}>{year}</option>
+                        ))}
+                      </select>
+                    </label>
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      {street}
+                    </span>
+                    <span class="year"> {year}</span>
+                  </>
+                )}
+              </div>
             </div>
           </div>
           <div className="container">
@@ -101,8 +161,8 @@ const App = () => {
                       const newDisposalTypes = checked
                         ? [...disposalTypes, disposal_type.short]
                         : disposalTypes.filter(
-                            (dt) => dt !== disposal_type.short,
-                          );
+                          (dt) => dt !== disposal_type.short,
+                        );
                       setDisposalTypes(newDisposalTypes);
                     }}
                     key={disposal_type.short}
@@ -156,7 +216,7 @@ const App = () => {
                       street,
                     )}&disposal_types=${encodeURIComponent(
                       disposalTypes.join(','),
-                    )}&weekModulo=${idx + 1}&parties=${parties.length}`}
+                    )}&weekModulo=${idx + 1}&parties=${parties.length}&year=${year}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -222,7 +282,8 @@ const App = () => {
             </div>
           </footer>
         </>
-      )}
+      )
+      }
     </>
   );
 };

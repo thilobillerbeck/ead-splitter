@@ -4,6 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from ics import Calendar
+from pydantic.types import SecretType
 from requests import get
 
 app = FastAPI()
@@ -66,6 +67,10 @@ async def meta(request: Request, response_class=JSONResponse):
         "years": [str(year) for year in range(2025, 2027)]
     }
 
+def removeSpecialChars(s: str, min: bool = False) -> str:
+    s = s.replace(",", "")
+    s = "_".join(s.split()).replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss") if not min else s
+    return s
 
 @app.get("/api/download")
 async def download(
@@ -75,6 +80,9 @@ async def download(
     parties: int = 12,
     year: int = 2025
 ):
+
+    streetNameSnake = removeSpecialChars(street)
+
     print(
         f"street: {street}, chosenTypes: {chosenTypes}, weekModulo: {weekModulo}, parties: {parties}, year: {year}"
     )
@@ -90,13 +98,17 @@ async def download(
 
     c_res = Calendar()
 
-    c_res.extra.name = f"Abfall {street} {weekModulo}_{parties}"
+    c_res.extra.name = f"Axbfall-{year} {street} {weekModulo}-{parties}"
     for event in c.events:
         print(
             f"a: {get_week_number(event.begin) % parties}, b: {weekModulo}, c: {get_week_number(event.begin)}"
         )
         if get_week_number(event.begin) % parties == (weekModulo % parties):
+            event.description = removeSpecialChars(f"Abholung {event.description or ""}", True)
+            event.location = removeSpecialChars(event.location or "", True)
             c_res.events.add(event)
+
+
 
     serial = [
         line for line in c_res.serialize().split("\n") if not line.startswith("UID")
@@ -121,15 +133,8 @@ async def download(
         line = line.replace(",", ", ")
         serial[i] = line
 
-    streetNameSnake = (
-        street.replace(" ", "_")
-        .replace(",", "")
-        .replace("-", "_")
-        .replace("ä", "ae")
-        .replace("ö", "oe")
-        .replace("ü", "ue")
-        .replace("ß", "ss")
-    )
+    serial[0] = "BEGIN:VCALENDAR\n"
+    serial[-1] = "END:VCALENDAR\n"
 
     return PlainTextResponse(
         content="\n".join(serial),

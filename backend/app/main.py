@@ -1,9 +1,11 @@
 import json
+import uuid
 
 from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from ics import Calendar
+from ics.event import Event
 from pydantic.types import SecretType
 from requests import get
 
@@ -106,12 +108,13 @@ async def download(
         if get_week_number(event.begin) % parties == (weekModulo % parties):
             event.description = removeSpecialChars(f"Abholung {event.description or ""}", True)
             event.location = removeSpecialChars(event.location or "", True)
+            event.uid = str(uuid.uuid4())
             c_res.events.add(event)
 
 
 
     serial = [
-        line for line in c_res.serialize().split("\n") if not line.startswith("UID")
+        line for line in c_res.serialize().split("\n")
     ]
 
     for i, line in enumerate(serial):
@@ -133,7 +136,7 @@ async def download(
         line = line.replace(",", ", ")
         serial[i] = line
 
-    serial[0] = "BEGIN:VCALENDAR\n"
+    serial[0] = "BEGIN:VCALENDAR"
     serial[-1] = "END:VCALENDAR\n"
 
     return PlainTextResponse(

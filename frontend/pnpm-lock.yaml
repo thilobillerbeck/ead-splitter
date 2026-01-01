@@ -20,7 +20,7 @@ importers:
         version: 1.6.15
       '@rsbuild/plugin-preact':
         specifier: ^1.2.0
-        version: 1.6.0(@rsbuild/core@1.6.15)(preact@10.28.1)
+        version: 1.7.0(@rsbuild/core@1.6.15)(preact@10.28.1)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -126,8 +126,8 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  '@rsbuild/plugin-preact@1.6.0':
-    resolution: {integrity: sha512-/IzJevWRls9ywyHCKeEevgndzgzWW6YOG5+wOHogF5kTYqbaTXTZj0akgTmQqyi1/+wJ+WJoC8tYv4jNAZwdrQ==}
+  '@rsbuild/plugin-preact@1.7.0':
+    resolution: {integrity: sha512-jBjWcOOaEnjIyE/zPVtrF8inLmgpEbPG+fktfIiY4DihXrqdBc1j+wOoLXcdnlT+lEpWxmTrGsytTj9vUc6GFA==}
     peerDependencies:
       '@rsbuild/core': 1.x
 
@@ -207,8 +207,8 @@ packages:
   '@swc/helpers@0.5.17':
     resolution: {integrity: sha512-5IKx/Y13RsYd+sauPb2x+U/xZikHjolzfuDgTAl/Tdf3Q8rslRvC19NKDLgAJQ6wsqADk10ntlv08nPFw/gO/A==}
 
-  '@swc/plugin-prefresh@10.0.0':
-    resolution: {integrity: sha512-KP8XT2FILHd74lNwJY4CGnda7DBd8TY+EN8qPd1tTjvcUc1CCm1qWtqvC06yQM3G24I0VTDZq3iEcrxHNpQSiw==}
+  '@swc/plugin-prefresh@12.3.0':
+    resolution: {integrity: sha512-V0ArkVIu6MdFVpZ+Wc6KIma/xb2JE5PQ6wbm56SnQ/LcJ7j8G1AKI3tkf+xVIewgltCqYKdbOJRVF+AYBTDfTA==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -333,13 +333,13 @@ snapshots:
       core-js: 3.47.0
       jiti: 2.6.1
 
-  '@rsbuild/plugin-preact@1.6.0(@rsbuild/core@1.6.15)(preact@10.28.1)':
+  '@rsbuild/plugin-preact@1.7.0(@rsbuild/core@1.6.15)(preact@10.28.1)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.28.1)
       '@prefresh/utils': 1.2.1
       '@rsbuild/core': 1.6.15
       '@rspack/plugin-preact-refresh': 1.1.4(@prefresh/core@1.5.9(preact@10.28.1))(@prefresh/utils@1.2.1)
-      '@swc/plugin-prefresh': 10.0.0
+      '@swc/plugin-prefresh': 12.3.0
     transitivePeerDependencies:
       - preact
 
@@ -409,7 +409,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@swc/plugin-prefresh@10.0.0':
+  '@swc/plugin-prefresh@12.3.0':
     dependencies:
       '@swc/counter': 0.1.3
 

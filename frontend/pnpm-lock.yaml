@@ -20,7 +20,7 @@ importers:
         version: 1.7.2
       '@rsbuild/plugin-preact':
         specifier: ^1.2.0
-        version: 1.7.0(@rsbuild/core@1.7.2)(preact@10.28.2)
+        version: 1.7.1(@rsbuild/core@1.7.2)(preact@10.28.2)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -126,10 +126,10 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  '@rsbuild/plugin-preact@1.7.0':
-    resolution: {integrity: sha512-jBjWcOOaEnjIyE/zPVtrF8inLmgpEbPG+fktfIiY4DihXrqdBc1j+wOoLXcdnlT+lEpWxmTrGsytTj9vUc6GFA==}
+  '@rsbuild/plugin-preact@1.7.1':
+    resolution: {integrity: sha512-FRBO4kQ72s6s4F2D7MMMljSD4tjkMg9cCfJg/UBnX+rySLiWFDSG5zsM7G6ALcLWEriYCMupmD7LJL+eDA+nGA==}
     peerDependencies:
-      '@rsbuild/core': 1.x
+      '@rsbuild/core': ^1.0.0 || ^2.0.0-0
 
   '@rspack/binding-darwin-arm64@1.7.1':
     resolution: {integrity: sha512-3C0w0kfCHfgOH+AP/Dx1bm/b3AR/or5CmU22Abevek0m95ndU3iT902eLcm9JNiMQnDQLBQbolfj5P591t0oPg==}
@@ -333,7 +333,7 @@ snapshots:
       core-js: 3.47.0
       jiti: 2.6.1
 
-  '@rsbuild/plugin-preact@1.7.0(@rsbuild/core@1.7.2)(preact@10.28.2)':
+  '@rsbuild/plugin-preact@1.7.1(@rsbuild/core@1.7.2)(preact@10.28.2)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.28.2)
       '@prefresh/utils': 1.2.1

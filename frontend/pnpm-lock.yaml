@@ -20,7 +20,7 @@ importers:
         version: 1.7.3
       '@rsbuild/plugin-preact':
         specifier: ^1.2.0
-        version: 1.7.1(@rsbuild/core@1.7.3)(preact@10.28.4)
+        version: 1.7.2(@rsbuild/core@1.7.3)(preact@10.28.4)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -130,10 +130,13 @@ packages:
     engines: {node: '>=18.12.0'}
     hasBin: true
 
-  '@rsbuild/plugin-preact@1.7.1':
-    resolution: {integrity: sha512-FRBO4kQ72s6s4F2D7MMMljSD4tjkMg9cCfJg/UBnX+rySLiWFDSG5zsM7G6ALcLWEriYCMupmD7LJL+eDA+nGA==}
+  '@rsbuild/plugin-preact@1.7.2':
+    resolution: {integrity: sha512-MHDpgrwmUp0Ktgem6A2Tih3xX7arGuKiUVkh4dDObE/UbWfJhyXcyq0q5gNaWVfqTgbVBHfL9bVy8jhzcY67TA==}
     peerDependencies:
       '@rsbuild/core': ^1.0.0 || ^2.0.0-0
+    peerDependenciesMeta:
+      '@rsbuild/core':
+        optional: true
 
   '@rspack/binding-darwin-arm64@1.7.5':
     resolution: {integrity: sha512-dg2/IrF+g498NUt654N8LFWfIiUsHlTankWieE1S3GWEQM6jweeRbNuu1Py1nWIUsjR2yQtv7ziia7c9Q8UTaQ==}
@@ -203,8 +206,8 @@ packages:
   '@rspack/lite-tapable@1.1.0':
     resolution: {integrity: sha512-E2B0JhYFmVAwdDiG14+DW0Di4Ze4Jg10Pc4/lILUrd5DRCaklduz2OvJ5HYQ6G+hd+WTzqQb3QnDNfK4yvAFYw==}
 
-  '@rspack/plugin-preact-refresh@1.1.4':
-    resolution: {integrity: sha512-M197BNmvxD7h0hwccmAyc3H6QCeOFPLUExoC9jgEpZI4+dLnbrJyGEEuGss2svUIT6T5d92S71K0o8xSyjuFPQ==}
+  '@rspack/plugin-preact-refresh@1.1.5':
+    resolution: {integrity: sha512-1oXF8ovAF+XoMcZ1qjeJ+l28qXAnKmVulV8Q5/Q1bXDkfMBmvC10O94wpxojcIY/kdMrHIFTfWbUhm0qBcYeGA==}
     peerDependencies:
       '@prefresh/core': ^1.5.0
       '@prefresh/utils': ^1.2.0
@@ -215,8 +218,8 @@ packages:
   '@swc/helpers@0.5.18':
     resolution: {integrity: sha512-TXTnIcNJQEKwThMMqBXsZ4VGAza6bvN4pa41Rkqoio6QBKMvo+5lexeTMScGCIxtzgQJzElcvIltani+adC5PQ==}
 
-  '@swc/plugin-prefresh@12.3.0':
-    resolution: {integrity: sha512-V0ArkVIu6MdFVpZ+Wc6KIma/xb2JE5PQ6wbm56SnQ/LcJ7j8G1AKI3tkf+xVIewgltCqYKdbOJRVF+AYBTDfTA==}
+  '@swc/plugin-prefresh@12.7.0':
+    resolution: {integrity: sha512-1d+YWDPdeHcxbK6WXwm+TYMDwKSsSzf6OoqFrBpUujr3XvE2ydK+egocGJS7Z8bhwIUD4bHst6CqZVO+v32o/Q==}
 
   '@tybys/wasm-util@0.10.1':
     resolution: {integrity: sha512-9tTaPJLSiejZKx+Bmog4uSubteqTvFrVrURwkmHixBo0G4seD0zUxp98E1DzUBJxLQ3NPwXrGKDiVjwx/DpPsg==}
@@ -341,13 +344,14 @@ snapshots:
       core-js: 3.47.0
       jiti: 2.6.1
 
-  '@rsbuild/plugin-preact@1.7.1(@rsbuild/core@1.7.3)(preact@10.28.4)':
+  '@rsbuild/plugin-preact@1.7.2(@rsbuild/core@1.7.3)(preact@10.28.4)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.28.4)
       '@prefresh/utils': 1.2.1
+      '@rspack/plugin-preact-refresh': 1.1.5(@prefresh/core@1.5.9(preact@10.28.4))(@prefresh/utils@1.2.1)
+      '@swc/plugin-prefresh': 12.7.0
+    optionalDependencies:
       '@rsbuild/core': 1.7.3
-      '@rspack/plugin-preact-refresh': 1.1.4(@prefresh/core@1.5.9(preact@10.28.4))(@prefresh/utils@1.2.1)
-      '@swc/plugin-prefresh': 12.3.0
     transitivePeerDependencies:
       - preact
 
@@ -406,7 +410,7 @@ snapshots:
 
   '@rspack/lite-tapable@1.1.0': {}
 
-  '@rspack/plugin-preact-refresh@1.1.4(@prefresh/core@1.5.9(preact@10.28.4))(@prefresh/utils@1.2.1)':
+  '@rspack/plugin-preact-refresh@1.1.5(@prefresh/core@1.5.9(preact@10.28.4))(@prefresh/utils@1.2.1)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.28.4)
       '@prefresh/utils': 1.2.1
@@ -417,7 +421,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@swc/plugin-prefresh@12.3.0':
+  '@swc/plugin-prefresh@12.7.0':
     dependencies:
       '@swc/counter': 0.1.3
 

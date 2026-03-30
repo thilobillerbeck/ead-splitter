@@ -17,10 +17,10 @@ importers:
         version: 2.4.9
       '@rsbuild/core':
         specifier: ^1.1.8
-        version: 1.7.4
+        version: 1.7.5
       '@rsbuild/plugin-preact':
         specifier: ^1.2.0
-        version: 1.7.2(@rsbuild/core@1.7.4)(preact@10.29.0)
+        version: 1.7.2(@rsbuild/core@1.7.5)(preact@10.29.0)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -125,8 +125,8 @@ packages:
   '@prefresh/utils@1.2.1':
     resolution: {integrity: sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw==}
 
-  '@rsbuild/core@1.7.4':
-    resolution: {integrity: sha512-1hn9j62Kkckh2CGUMQcr/H/PtHgN5iqB3kChaMCVGqxrC4jbJBQxRtuHuWVJDKeEO0uWPMABAR748qJISIyh5w==}
+  '@rsbuild/core@1.7.5':
+    resolution: {integrity: sha512-i37urpoV4y9NSsGiUOuLdoI42KJ5h4gAZ8EG8Ilmsond3bxoAoOCu7YvC+1pJ7p+r16suVPW8cki891ZKHOoXQ==}
     engines: {node: '>=18.12.0'}
     hasBin: true
 
@@ -336,7 +336,7 @@ snapshots:
 
   '@prefresh/utils@1.2.1': {}
 
-  '@rsbuild/core@1.7.4':
+  '@rsbuild/core@1.7.5':
     dependencies:
       '@rspack/core': 1.7.10(@swc/helpers@0.5.20)
       '@rspack/lite-tapable': 1.1.0
@@ -344,14 +344,14 @@ snapshots:
       core-js: 3.47.0
       jiti: 2.6.1
 
-  '@rsbuild/plugin-preact@1.7.2(@rsbuild/core@1.7.4)(preact@10.29.0)':
+  '@rsbuild/plugin-preact@1.7.2(@rsbuild/core@1.7.5)(preact@10.29.0)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.29.0)
       '@prefresh/utils': 1.2.1
       '@rspack/plugin-preact-refresh': 1.1.5(@prefresh/core@1.5.9(preact@10.29.0))(@prefresh/utils@1.2.1)
       '@swc/plugin-prefresh': 12.7.0
     optionalDependencies:
-      '@rsbuild/core': 1.7.4
+      '@rsbuild/core': 1.7.5
     transitivePeerDependencies:
       - preact
 

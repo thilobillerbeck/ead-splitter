@@ -17,10 +17,10 @@ importers:
         version: 2.4.15
       '@rsbuild/core':
         specifier: ^2.0.0
-        version: 2.0.5
+        version: 2.0.6
       '@rsbuild/plugin-preact':
         specifier: ^1.2.0
-        version: 1.7.2(@rsbuild/core@2.0.5)(preact@10.29.1)
+        version: 1.7.2(@rsbuild/core@2.0.6)(preact@10.29.1)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -110,8 +110,8 @@ packages:
   '@prefresh/utils@1.2.1':
     resolution: {integrity: sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw==}
 
-  '@rsbuild/core@2.0.5':
-    resolution: {integrity: sha512-KajO50hbXb32S8MsyDh2f+xKcVeRy9Gfzdcy0JjpMLj22djHugly6jrGo7jH7ls9X6/TDcyCTncSuNK4+D2lTw==}
+  '@rsbuild/core@2.0.6':
+    resolution: {integrity: sha512-0/u7oTgPp9NsL7E7qXzYiOOPAsOJiDbOr0FmG6gizJDIpYK8nospogNrwQ00SG0had9fdhLI7XkhP160IaLnWw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -294,21 +294,21 @@ snapshots:
 
   '@prefresh/utils@1.2.1': {}
 
-  '@rsbuild/core@2.0.5':
+  '@rsbuild/core@2.0.6':
     dependencies:
       '@rspack/core': 2.0.3(@swc/helpers@0.5.21)
       '@swc/helpers': 0.5.21
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rsbuild/plugin-preact@1.7.2(@rsbuild/core@2.0.5)(preact@10.29.1)':
+  '@rsbuild/plugin-preact@1.7.2(@rsbuild/core@2.0.6)(preact@10.29.1)':
     dependencies:
       '@prefresh/core': 1.5.9(preact@10.29.1)
       '@prefresh/utils': 1.2.1
       '@rspack/plugin-preact-refresh': 1.1.5(@prefresh/core@1.5.9(preact@10.29.1))(@prefresh/utils@1.2.1)
       '@swc/plugin-prefresh': 12.7.0
     optionalDependencies:
-      '@rsbuild/core': 2.0.5
+      '@rsbuild/core': 2.0.6
     transitivePeerDependencies:
       - preact
 

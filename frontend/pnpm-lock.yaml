@@ -17,10 +17,10 @@ importers:
         version: 2.5.0
       '@rsbuild/core':
         specifier: ^2.0.0
-        version: 2.0.13
+        version: 2.0.15
       '@rsbuild/plugin-preact':
         specifier: ^2.0.0
-        version: 2.0.0(@rsbuild/core@2.0.13)(@rspack/core@2.0.8(@swc/helpers@0.5.23))(preact@10.29.2)
+        version: 2.0.0(@rsbuild/core@2.0.15)(@rspack/core@2.0.8(@swc/helpers@0.5.23))(preact@10.29.2)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -110,8 +110,8 @@ packages:
   '@prefresh/utils@1.2.1':
     resolution: {integrity: sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw==}
 
-  '@rsbuild/core@2.0.13':
-    resolution: {integrity: sha512-nJppOdb6vwCcL4hc/dq9bejDRDgxYy2U/+NxDTh8pd3mrENW4DzEweTYtr+oqobABU1fFfPlU9Owo605wG67cA==}
+  '@rsbuild/core@2.0.15':
+    resolution: {integrity: sha512-O8vmMhZu1YImO6jOqt/K/vlJSvkq7UtSq5YM1DIlcEd9LW8Gf6/dkQ1B2KPI6F+hSMFBnTTTumdcIowSLCw97g==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -298,21 +298,21 @@ snapshots:
 
   '@prefresh/utils@1.2.1': {}
 
-  '@rsbuild/core@2.0.13':
+  '@rsbuild/core@2.0.15':
     dependencies:
       '@rspack/core': 2.0.8(@swc/helpers@0.5.23)
       '@swc/helpers': 0.5.23
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rsbuild/plugin-preact@2.0.0(@rsbuild/core@2.0.13)(@rspack/core@2.0.8(@swc/helpers@0.5.23))(preact@10.29.2)':
+  '@rsbuild/plugin-preact@2.0.0(@rsbuild/core@2.0.15)(@rspack/core@2.0.8(@swc/helpers@0.5.23))(preact@10.29.2)':
     dependencies:
       '@prefresh/core': 1.5.10(preact@10.29.2)
       '@prefresh/utils': 1.2.1
       '@rspack/plugin-preact-refresh': 2.0.1(@prefresh/core@1.5.10(preact@10.29.2))(@prefresh/utils@1.2.1)(@rspack/core@2.0.8(@swc/helpers@0.5.23))
       '@swc/plugin-prefresh': 12.12.0
     optionalDependencies:
-      '@rsbuild/core': 2.0.13
+      '@rsbuild/core': 2.0.15
     transitivePeerDependencies:
       - '@rspack/core'
       - preact

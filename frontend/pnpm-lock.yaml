@@ -10,7 +10,7 @@ importers:
     dependencies:
       preact:
         specifier: ^10.25.1
-        version: 10.29.3
+        version: 10.29.4
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.0.0
@@ -20,7 +20,7 @@ importers:
         version: 2.1.1
       '@rsbuild/plugin-preact':
         specifier: ^2.0.0
-        version: 2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.3)
+        version: 2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.4)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -230,8 +230,8 @@ packages:
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
 
-  preact@10.29.3:
-    resolution: {integrity: sha512-D9NL1GAnJZhc3RndVs4gDdxEeU9TcHgywMrhhOsnpdlvFjdbx0gAsLUnH6JEhlJH5giL7Tx5biWPUSEXE/HPzw==}
+  preact@10.29.4:
+    resolution: {integrity: sha512-GMpwh9+NJ8tSmqwIaVyFRQkiKfBEzQ+k7r7tle4W+kaJ+7wJiB9hFz9BixAomMtenPPSBfM4bZhXozGxhf0uFQ==}
 
   the-new-css-reset@1.11.3:
     resolution: {integrity: sha512-61SB81vu9foUyEIqoU1CeqxrdlsVjJojj/CBXoG8BdvlKFsllB0Rza63DblnRqH+3uttPj3FGWo7+c9nu7MT+A==}
@@ -304,9 +304,9 @@ snapshots:
       '@tybys/wasm-util': 0.10.3
     optional: true
 
-  '@prefresh/core@1.5.10(preact@10.29.3)':
+  '@prefresh/core@1.5.10(preact@10.29.4)':
     dependencies:
-      preact: 10.29.3
+      preact: 10.29.4
 
   '@prefresh/utils@1.2.1': {}
 
@@ -317,11 +317,11 @@ snapshots:
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rsbuild/plugin-preact@2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.3)':
+  '@rsbuild/plugin-preact@2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.4)':
     dependencies:
-      '@prefresh/core': 1.5.10(preact@10.29.3)
+      '@prefresh/core': 1.5.10(preact@10.29.4)
       '@prefresh/utils': 1.2.1
-      '@rspack/plugin-preact-refresh': 2.0.1(@prefresh/core@1.5.10(preact@10.29.3))(@prefresh/utils@1.2.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))
+      '@rspack/plugin-preact-refresh': 2.0.1(@prefresh/core@1.5.10(preact@10.29.4))(@prefresh/utils@1.2.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))
       '@swc/plugin-prefresh': 12.12.0
     optionalDependencies:
       '@rsbuild/core': 2.1.1
@@ -390,9 +390,9 @@ snapshots:
     optionalDependencies:
       '@swc/helpers': 0.5.23
 
-  '@rspack/plugin-preact-refresh@2.0.1(@prefresh/core@1.5.10(preact@10.29.3))(@prefresh/utils@1.2.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))':
+  '@rspack/plugin-preact-refresh@2.0.1(@prefresh/core@1.5.10(preact@10.29.4))(@prefresh/utils@1.2.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))':
     dependencies:
-      '@prefresh/core': 1.5.10(preact@10.29.3)
+      '@prefresh/core': 1.5.10(preact@10.29.4)
       '@prefresh/utils': 1.2.1
     optionalDependencies:
       '@rspack/core': 2.1.1(@swc/helpers@0.5.23)
@@ -412,7 +412,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  preact@10.29.3: {}
+  preact@10.29.4: {}
 
   the-new-css-reset@1.11.3: {}
 

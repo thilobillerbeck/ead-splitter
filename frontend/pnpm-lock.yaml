@@ -20,7 +20,7 @@ importers:
         version: 2.1.1
       '@rsbuild/plugin-preact':
         specifier: ^2.0.0
-        version: 2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.6)
+        version: 2.1.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.6)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -120,8 +120,8 @@ packages:
       core-js:
         optional: true
 
-  '@rsbuild/plugin-preact@2.0.0':
-    resolution: {integrity: sha512-71eGBA8AilI/v9WDxHTWkB9CnMRb8XI6jOQAP/j+a3++CoUFA9QwYr7r5jPtpdzmf4RKugUXfc3baKM/paqOGQ==}
+  '@rsbuild/plugin-preact@2.1.0':
+    resolution: {integrity: sha512-wbxiOznh5vZhY3DdW9FlkhgSwhjt7xxfy/7mMALvUwreGUVjIVHNgQq5+1TI5+zI+mM+f09904awSF/Glq9vPg==}
     peerDependencies:
       '@rsbuild/core': ^2.0.0
     peerDependenciesMeta:
@@ -224,8 +224,8 @@ packages:
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
-  '@swc/plugin-prefresh@12.12.0':
-    resolution: {integrity: sha512-a2U4GwMjuNnaUuR2nMpTXXbCTMvBRj3zmKhy5wWD76hj21YF6JTFBzZ+yelLrjKrGNkq2AGqYEL7d1gX+6v+JA==}
+  '@swc/plugin-prefresh@13.0.0':
+    resolution: {integrity: sha512-H/jPol2yvZ2mgFVmc1Doo3CDiwWoBxuq2s/SZgC5U77G+eDyrNXk8nPRhOSD8xwXeptmxws/hLSsAkpk8vIJng==}
 
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
@@ -317,12 +317,12 @@ snapshots:
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rsbuild/plugin-preact@2.0.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.6)':
+  '@rsbuild/plugin-preact@2.1.0(@rsbuild/core@2.1.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))(preact@10.29.6)':
     dependencies:
       '@prefresh/core': 1.5.10(preact@10.29.6)
       '@prefresh/utils': 1.2.1
       '@rspack/plugin-preact-refresh': 2.0.1(@prefresh/core@1.5.10(preact@10.29.6))(@prefresh/utils@1.2.1)(@rspack/core@2.1.1(@swc/helpers@0.5.23))
-      '@swc/plugin-prefresh': 12.12.0
+      '@swc/plugin-prefresh': 13.0.0
     optionalDependencies:
       '@rsbuild/core': 2.1.1
     transitivePeerDependencies:
@@ -403,7 +403,7 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
-  '@swc/plugin-prefresh@12.12.0':
+  '@swc/plugin-prefresh@13.0.0':
     dependencies:
       '@swc/counter': 0.1.3
 

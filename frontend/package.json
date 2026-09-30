@@ -10,7 +10,7 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "preact": "^10.25.1"
+    "preact": "^11.0.0"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.0.0",

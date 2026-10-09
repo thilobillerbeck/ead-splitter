@@ -25,7 +25,7 @@ const App = () => {
       setStreet(parsed.street);
       setDisposalTypes(parsed.disposal_types);
       setParties(parsed.parties);
-      setYear(parsed.year || (parsed.parties ? 2025 : new Date().getFullYear));
+      setYear(parsed.year || (parsed.parties ? 2025 : new Date().getFullYear()));
     }
 
     if (edit) {
@@ -214,7 +214,7 @@ const App = () => {
                     className="btn btn--download"
                     href={`/api/download?street=${encodeURIComponent(
                       street,
-                    )}&disposal_types=${encodeURIComponent(
+                    )}&chosenTypes=${encodeURIComponent(
                       disposalTypes.join(','),
                     )}&weekModulo=${idx + 1}&parties=${parties.length}&year=${year}`}
                   >

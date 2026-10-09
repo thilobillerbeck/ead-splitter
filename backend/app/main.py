@@ -1,15 +1,17 @@
 import json
 import uuid
+from urllib.parse import quote
 
 from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from ics import Calendar
 from ics.event import Event
-from pydantic.types import SecretType
 from requests import get
 
 app = FastAPI()
+
+REQUEST_TIMEOUT = 10
 
 disposal_types = [
     {
@@ -62,7 +64,8 @@ async def meta(request: Request, response_class=JSONResponse):
     return {
         "streets": json.loads(
             get(
-                "https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/getStreets/?type=742394"
+                "https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/getStreets/?type=742394",
+                timeout=REQUEST_TIMEOUT,
             ).text
         ),
         "disposal_types": disposal_types,
@@ -94,9 +97,9 @@ async def download(
 
     chosenTypesQuery = "&".join([f"chosenTypes[]={t}" for t in chosenTypes.split(",")])
 
-    url = f"https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/downloadIcs/?type=742394&street={street}&{chosenTypesQuery}&year={year}"
+    url = f"https://ead.darmstadt.de/unser-angebot/privathaushalte/abfallkalender/downloadIcs/?type=742394&street={quote(street)}&{chosenTypesQuery}&year={year}"
 
-    c = Calendar(get(url).text)
+    c = Calendar(get(url, timeout=REQUEST_TIMEOUT).text)
 
     c_res = Calendar()
 

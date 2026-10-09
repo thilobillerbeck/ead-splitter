@@ -80,6 +80,10 @@ const App = () => {
       .then((res) => res.json())
       .then((data) => {
         setMeta(data);
+        const years = data.years.map(Number);
+        if (years.length) {
+          setYear((current) => (years.includes(current) ? current : years[years.length - 1]));
+        }
         setLoading(false);
       });
   }, []);

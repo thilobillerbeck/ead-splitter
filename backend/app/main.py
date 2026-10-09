@@ -6,7 +6,6 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from ics import Calendar
-from ics.event import Event
 from requests import get
 
 app = FastAPI()
@@ -60,7 +59,7 @@ async def health_check():
 
 
 @app.get("/api/meta")
-async def meta(request: Request, response_class=JSONResponse):
+def meta(request: Request, response_class=JSONResponse):
     return {
         "streets": json.loads(
             get(
@@ -69,21 +68,34 @@ async def meta(request: Request, response_class=JSONResponse):
             ).text
         ),
         "disposal_types": disposal_types,
-        "years": [str(year) for year in range(2025, 2027)]
+        "years": [str(year) for year in range(2025, 2027)],
     }
+
 
 def removeSpecialChars(s: str, min: bool = False) -> str:
     s = s.replace(",", "")
-    s = "_".join(s.split()).replace("ä", "ae").replace("ö", "oe").replace("ü", "ue").replace("ß", "ss") if not min else s
+    s = (
+        "_".join(s.split())
+        .replace("ä", "ae")
+        .replace("ö", "oe")
+        .replace("ü", "ue")
+        .replace("Ä", "Ae")
+        .replace("Ö", "Oe")
+        .replace("Ü", "Ue")
+        .replace("ß", "ss")
+        if not min
+        else s
+    )
     return s
 
+
 @app.get("/api/download")
-async def download(
+def download(
     street: str = "Arheilger Straße 1-83, 2-94",
     chosenTypes: str = "PPK,BIO,WET,RM1,RM2,RM4",
     weekModulo: int = 9,
     parties: int = 12,
-    year: int = 2025
+    year: int = 2025,
 ):
 
     streetNameSnake = removeSpecialChars(street)
@@ -109,16 +121,14 @@ async def download(
             f"a: {get_week_number(event.begin) % parties}, b: {weekModulo}, c: {get_week_number(event.begin)}"
         )
         if get_week_number(event.begin) % parties == (weekModulo % parties):
-            event.description = removeSpecialChars(f"Abholung {event.description or ""}", True)
+            event.description = removeSpecialChars(
+                f"Abholung {event.description or ''}", True
+            )
             event.location = removeSpecialChars(event.location or "", True)
             event.uid = str(uuid.uuid4())
             c_res.events.add(event)
 
-
-
-    serial = [
-        line for line in c_res.serialize().split("\n")
-    ]
+    serial = [line for line in c_res.serialize().split("\n")]
 
     for i, line in enumerate(serial):
         if "SUMMARY" in line:

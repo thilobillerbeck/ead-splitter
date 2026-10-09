@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^10.0.0"
+    "concurrently": "^10.0.6"
   },
   "scripts": {
     "frontend": "cd frontend && pnpm run dev",

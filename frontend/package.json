@@ -10,13 +10,13 @@
     "preview": "rsbuild preview"
   },
   "dependencies": {
-    "preact": "^10.25.1"
+    "preact": "^11.0.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.0.0",
-    "@rsbuild/core": "^2.0.0",
-    "@rsbuild/plugin-preact": "^2.0.0",
+    "@biomejs/biome": "^2.5.15",
+    "@rsbuild/core": "^2.2.12",
+    "@rsbuild/plugin-preact": "^2.1.0",
     "the-new-css-reset": "^1.11.3",
-    "typescript": "^6.0.0"
+    "typescript": "^7.0.2"
   }
 }

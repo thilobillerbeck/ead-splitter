@@ -1,15 +1,27 @@
 import { useEffect, useState } from 'preact/hooks';
 import './App.css';
 
+type DisposalType = { name: string; color: string; short: string };
+
+type Meta = {
+  streets: string[];
+  disposal_types: DisposalType[];
+  years: string[];
+};
+
 const App = () => {
-  const [meta, setMeta] = useState({});
+  const [meta, setMeta] = useState<Meta>({
+    streets: [],
+    disposal_types: [],
+    years: [],
+  });
 
   const [loading, setLoading] = useState(true);
   const [edit, setEdit] = useState(true);
 
   const [street, setStreet] = useState('');
-  const [disposalTypes, setDisposalTypes] = useState([]);
-  const [parties, setParties] = useState([]);
+  const [disposalTypes, setDisposalTypes] = useState<string[]>([]);
+  const [parties, setParties] = useState<string[]>([]);
 
   const [year, setYear] = useState(2025);
 
@@ -25,7 +37,9 @@ const App = () => {
       setStreet(parsed.street);
       setDisposalTypes(parsed.disposal_types);
       setParties(parsed.parties);
-      setYear(parsed.year || (parsed.parties ? 2025 : new Date().getFullYear()));
+      setYear(
+        parsed.year || (parsed.parties ? 2025 : new Date().getFullYear()),
+      );
     }
 
     if (edit) {
@@ -37,7 +51,8 @@ const App = () => {
     const tempDate = new Date(date.getTime());
     tempDate.setDate(tempDate.getDate() + 4 - (tempDate.getDay() || 7));
     const yearStart = new Date(tempDate.getFullYear(), 0, 1);
-    return Math.ceil((((tempDate - yearStart) / 86400000) + 1) / 7);
+    const msSinceYearStart = tempDate.getTime() - yearStart.getTime();
+    return Math.ceil((msSinceYearStart / 86400000 + 1) / 7);
   }
 
   function getWeeksInYear(year: number) {
@@ -46,7 +61,7 @@ const App = () => {
     return week === 1 ? getISOWeek(new Date(year, 11, 24)) : week;
   }
 
-  function changePartyName(idx, name) {
+  function changePartyName(idx: number, name: string) {
     const newParties = [...parties];
     newParties[idx] = name;
     setParties(newParties);
@@ -58,14 +73,24 @@ const App = () => {
     let currentParties = [...parties];
     if (newYear < year) {
       while (currentYear > newYear) {
-        const firstPartyInLastYear = getWeeksInYear(currentYear - 1) % currentParties.length;
-        currentParties = [...currentParties.slice(currentParties.length - firstPartyInLastYear), ...currentParties.slice(0, currentParties.length - firstPartyInLastYear)];
+        const firstPartyInLastYear =
+          getWeeksInYear(currentYear - 1) % currentParties.length;
+        currentParties = [
+          ...currentParties.slice(currentParties.length - firstPartyInLastYear),
+          ...currentParties.slice(
+            0,
+            currentParties.length - firstPartyInLastYear,
+          ),
+        ];
         currentYear--;
       }
     } else {
       while (currentYear < newYear) {
         const lastParty = getWeeksInYear(currentYear) % currentParties.length;
-        currentParties = [...currentParties.slice(lastParty), ...currentParties.slice(0, lastParty)];
+        currentParties = [
+          ...currentParties.slice(lastParty),
+          ...currentParties.slice(0, lastParty),
+        ];
         currentYear++;
       }
     }
@@ -82,7 +107,9 @@ const App = () => {
         setMeta(data);
         const years = data.years.map(Number);
         if (years.length) {
-          setYear((current) => (years.includes(current) ? current : years[years.length - 1]));
+          setYear((current) =>
+            years.includes(current) ? current : years[years.length - 1],
+          );
         }
         setLoading(false);
       });
@@ -120,9 +147,7 @@ const App = () => {
                 {edit ? (
                   <>
                     <label htmlFor="streetSelect">
-                      <span>
-                        Straße
-                      </span>
+                      <span>Straße</span>
                       <select
                         onChange={(e) => setStreet(e.currentTarget.value)}
                         value={street}
@@ -135,7 +160,13 @@ const App = () => {
                     </label>
                     <label htmlFor="yearSelect">
                       <span>Jahr</span>
-                      <select onChange={(e) => reorderParties(e.currentTarget.value)} value={year} className="yearSelect">
+                      <select
+                        onChange={(e) =>
+                          reorderParties(Number(e.currentTarget.value))
+                        }
+                        value={year}
+                        className="yearSelect"
+                      >
                         {meta.years.map((year) => (
                           <option key={year}>{year}</option>
                         ))}
@@ -144,9 +175,7 @@ const App = () => {
                   </>
                 ) : (
                   <>
-                    <span>
-                      {street}
-                    </span>
+                    <span>{street}</span>
                     <span class="year"> {year}</span>
                   </>
                 )}
@@ -156,7 +185,7 @@ const App = () => {
           <div className="container">
             <h2 class="headlineSection">Abfallarten im Kalender</h2>
             <div className="formLayoutDisposal">
-              {meta.disposal_types.map((disposal_type, idx) => (
+              {meta.disposal_types.map((disposal_type) => (
                 <>
                   <input
                     type="checkbox"
@@ -165,8 +194,8 @@ const App = () => {
                       const newDisposalTypes = checked
                         ? [...disposalTypes, disposal_type.short]
                         : disposalTypes.filter(
-                          (dt) => dt !== disposal_type.short,
-                        );
+                            (dt) => dt !== disposal_type.short,
+                          );
                       setDisposalTypes(newDisposalTypes);
                     }}
                     key={disposal_type.short}
@@ -286,8 +315,7 @@ const App = () => {
             </div>
           </footer>
         </>
-      )
-      }
+      )}
     </>
   );
 };

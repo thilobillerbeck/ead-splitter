@@ -22,6 +22,7 @@ const App = () => {
   const [street, setStreet] = useState('');
   const [disposalTypes, setDisposalTypes] = useState<string[]>([]);
   const [parties, setParties] = useState<string[]>([]);
+  const [warnDayBefore, setWarnDayBefore] = useState(false);
 
   const [year, setYear] = useState(2025);
 
@@ -158,6 +159,17 @@ const App = () => {
                         ))}
                       </select>
                     </label>
+                    <label htmlFor="warnDayBefore">
+                      <span>Am Vortag eintragen</span>
+                      <input
+                        type="checkbox"
+                        onChange={(e) =>
+                          setWarnDayBefore(e.currentTarget.checked)
+                        }
+                        checked={warnDayBefore}
+                        id="warnDayBefore"
+                      />
+                    </label>
                     <label htmlFor="yearSelect">
                       <span>Jahr</span>
                       <select
@@ -249,7 +261,7 @@ const App = () => {
                       street,
                     )}&chosenTypes=${encodeURIComponent(
                       disposalTypes.join(','),
-                    )}&weekModulo=${idx + 1}&parties=${parties.length}&year=${year}`}
+                    )}&weekModulo=${idx + 1}&parties=${parties.length}&year=${year}&dayShift=${warnDayBefore ? -1 : 0}`}
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"

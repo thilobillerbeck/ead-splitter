@@ -1,7 +1,7 @@
 import json
 import unicodedata
 import uuid
-from datetime import date
+from datetime import date, timedelta
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
@@ -133,6 +133,7 @@ def download(
     weekModulo: int = 9,
     parties: int = 12,
     year: int = 2025,
+    dayShift: int = 0,
 ):
     street_filename = to_safe_filename(street)
     disposal_names = {t["short"]: t["name"] for t in disposal_types}
@@ -148,10 +149,13 @@ def download(
     for day, codes in sorted(schedule.items()):
         if day.year != year or day.isocalendar()[1] % parties != weekModulo % parties:
             continue
+
+        event_day = day + timedelta(days=dayShift)
+
         for code in codes:
             if code not in disposal_chosen or code not in disposal_names:
                 continue
-            event = Event(name=disposal_names[code], begin=day)
+            event = Event(name=disposal_names[code], begin=event_day)
             event.make_all_day()
             event.description = f"Abholung {disposal_names[code]}"
             event.location = street

@@ -22,6 +22,22 @@ select:focus {
   background-color: #101010;
 }
 
+input[type="checkbox"] {
+  appearance: auto;
+  width: 1.25rem;
+  height: 1.25rem;
+  padding: 0;
+  cursor: pointer;
+  accent-color: #371972;
+}
+
+label:has(input[type="checkbox"]) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
 b {
   font-weight: bold;
 }
@@ -94,24 +110,26 @@ a {
   bottom: 0;
 }
 
-input[type="checkbox"]:checked + .formLayoutDisposalEl {
+.formLayoutDisposal input[type="checkbox"]:checked + .formLayoutDisposalEl {
   background-color: #333;
   border: 1px solid #aaa;
 }
 
-input[type="checkbox"]:hover + .formLayoutDisposalEl {
+.formLayoutDisposal input[type="checkbox"]:hover + .formLayoutDisposalEl {
   border: 1px solid white;
   background-color: #3a3a3a;
 }
 
-input[type="checkbox"]:checked + .formLayoutDisposalEl::before {
+.formLayoutDisposal
+  input[type="checkbox"]:checked
+  + .formLayoutDisposalEl::before {
   --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2m0 2v14H5V5zm-9 12l-4-4l1.41-1.42L10 14.17l6.59-6.59L18 9'/%3E%3C/svg%3E");
   color: #ccc;
   font-size: 1.5rem;
   text-align: center;
 }
 
-input[type="checkbox"] {
+.formLayoutDisposal input[type="checkbox"] {
   display: none;
 }
 
@@ -277,9 +295,10 @@ button:hover,
 }
 
 .sub-flex {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
+  gap: 1rem;
   width: 100%;
 }
 
@@ -319,6 +338,12 @@ button:hover,
     flex-direction: column;
     align-items: stretch;
   }
+
+  .sub-flex {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
 }
 
 .formLayoutParties {
@@ -350,13 +375,15 @@ select {
     background-color: #ddd;
   }
 
-  input[type="checkbox"]:checked + .formLayoutDisposalEl {
+  .formLayoutDisposal input[type="checkbox"]:checked + .formLayoutDisposalEl {
     background-color: #ddd;
     border: 1px solid #000;
     color: #000;
   }
 
-  input[type="checkbox"]:checked + .formLayoutDisposalEl::before {
+  .formLayoutDisposal
+    input[type="checkbox"]:checked
+    + .formLayoutDisposalEl::before {
     color: #000;
   }
 
@@ -404,4 +431,15 @@ select {
   .footer a:visited {
     color: #111;
   }
+}
+
+.streetSelect {
+  max-width: 15rem;
+  margin-right: 1rem;
+  flex: 0;
+}
+
+.warnDayBefore {
+  flex: 1;
+  width: 100%;
 }

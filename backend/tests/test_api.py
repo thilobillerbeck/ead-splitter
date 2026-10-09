@@ -1,7 +1,7 @@
 import json
 import re
 from collections import Counter
-from datetime import date
+from datetime import date, timedelta
 from types import SimpleNamespace
 
 import pytest
@@ -280,3 +280,27 @@ def test_download_only_contains_the_requested_year(client, app_module, monkeypat
     }.items():
         assert event_dates(download(client, year=year).text) == expected
     assert client.get("/api/meta").json()["years"] == ["2025", "2026", "2027"]
+
+
+def test_day_shift_moves_every_event(client):
+    plain = sorted(event_dates(download(client, chosenTypes="PPK").text))
+    day_before = sorted(
+        event_dates(download(client, chosenTypes="PPK", dayShift=-1).text)
+    )
+    assert day_before == [d - timedelta(days=1) for d in plain]
+
+
+def test_day_shift_crosses_month_and_year_boundaries(client):
+    first_of_month = parse_ead_date("01.06.2026")
+    assert first_of_month in {parse_ead_date(d) for d in SCHEDULE}
+
+    r = download(client, dayShift=-1)
+
+    assert r.status_code == 200
+    assert date(2026, 5, 31) in event_dates(r.text)
+
+
+def test_day_shift_defaults_to_no_shift(client):
+    assert sorted(event_dates(download(client).text)) == sorted(
+        event_dates(download(client, dayShift=0).text)
+    )

@@ -17,10 +17,10 @@ importers:
         version: 2.5.15
       '@rsbuild/core':
         specifier: ^2.2.12
-        version: 2.2.13
+        version: 2.2.14
       '@rsbuild/plugin-preact':
         specifier: ^2.1.0
-        version: 2.1.0(@rsbuild/core@2.2.13)(@rspack/core@2.2.9(@swc/helpers@0.5.23))(preact@11.0.1)
+        version: 2.1.0(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))(preact@11.0.1)
       the-new-css-reset:
         specifier: ^1.11.3
         version: 1.11.3
@@ -110,8 +110,8 @@ packages:
   '@prefresh/utils@1.2.1':
     resolution: {integrity: sha512-vq/sIuN5nYfYzvyayXI4C2QkprfNaHUQ9ZX+3xLD8nL3rWyzpxOm1+K7RtMbhd+66QcaISViK7amjnheQ/4WZw==}
 
-  '@rsbuild/core@2.2.13':
-    resolution: {integrity: sha512-UDSDrokgG70tmx+0bz9kuc64SkPQ5A1/Zhqsp8pD0L3Cko/xEnukAbrjouGihUTk55imhC4zx62DnQN/1VJ+GQ==}
+  '@rsbuild/core@2.2.14':
+    resolution: {integrity: sha512-HNzuviBQuaPn24ltmlW0BwwB9YclY9sFz847Qyh8CeTtLLkfznmkSMeXeUHSTcZC22gveRKkut7iLjI1HPzCjw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -447,21 +447,21 @@ snapshots:
 
   '@prefresh/utils@1.2.1': {}
 
-  '@rsbuild/core@2.2.13':
+  '@rsbuild/core@2.2.14':
     dependencies:
       '@rspack/core': 2.2.9(@swc/helpers@0.5.23)
       '@swc/helpers': 0.5.23
     transitivePeerDependencies:
       - '@module-federation/runtime-tools'
 
-  '@rsbuild/plugin-preact@2.1.0(@rsbuild/core@2.2.13)(@rspack/core@2.2.9(@swc/helpers@0.5.23))(preact@11.0.1)':
+  '@rsbuild/plugin-preact@2.1.0(@rsbuild/core@2.2.14)(@rspack/core@2.2.9(@swc/helpers@0.5.23))(preact@11.0.1)':
     dependencies:
       '@prefresh/core': 1.5.11(preact@11.0.1)
       '@prefresh/utils': 1.2.1
       '@rspack/plugin-preact-refresh': 2.0.1(@prefresh/core@1.5.11(preact@11.0.1))(@prefresh/utils@1.2.1)(@rspack/core@2.2.9(@swc/helpers@0.5.23))
       '@swc/plugin-prefresh': 13.0.0
     optionalDependencies:
-      '@rsbuild/core': 2.2.13
+      '@rsbuild/core': 2.2.14
     transitivePeerDependencies:
       - '@rspack/core'
       - preact

@@ -11,6 +11,12 @@
       ],
       "matchCurrentVersion": "!/^0/",
       "automerge": true
+    },
+    {
+      "matchManagers": [
+        "pyenv"
+      ],
+      "automerge": false
     }
   ],
   "schedule": [
